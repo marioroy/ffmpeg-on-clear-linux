@@ -1,7 +1,7 @@
 #!/bin/bash
 
 name=aom
-branch=v3.0.0
+branch=v3.2.0
 echo "building ${name} branch ${branch}"
 
 mkdir -p builddir && cd builddir
