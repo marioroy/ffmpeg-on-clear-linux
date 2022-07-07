@@ -1,16 +1,16 @@
 #!/bin/bash
 
-name="vmaf-2.3.0"
+name="vmaf-2.3.1"
 echo "building ${name}"
 
 mkdir -p builddir && cd builddir
 rm -fr ${name}
 
 if [[ ! -f ${name}.tar.gz ]]; then
-    url="https://github.com/Netflix/vmaf/archive/v2.3.0.tar.gz"
+    url="https://github.com/Netflix/vmaf/archive/v2.3.1.tar.gz"
     echo "curl -LO ${url}"
     curl -LO ${url}
-    mv v2.3.0.tar.gz ${name}.tar.gz
+    mv v2.3.1.tar.gz ${name}.tar.gz
 fi
 
 tar xzf ${name}.tar.gz
