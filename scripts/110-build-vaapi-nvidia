@@ -38,6 +38,7 @@ if [[ -d ${name} ]]; then
     export LDFLAGS="-L/opt/nvidia/lib64 -L/opt/nvidia/lib"
     export LIBRARY_PATH="/opt/nvidia/lib64:/opt/nvidia/lib"
     export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
+    export CFLAGS="-O2 -march=native -pthread"
 
     # Remove older copy, now renamed to nvdec_drv_video.so, so can co-exist
     # with vdpau_drv_video.so.
