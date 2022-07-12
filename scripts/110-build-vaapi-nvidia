@@ -25,6 +25,21 @@ if [[ ! -f ${name}.tar.gz ]]; then
     echo "git clone --depth 1 ${url}"
     git clone --depth 1 ${url}
 
+    # Allow building with meson binary older than 0.58.0.
+    # Remove meson_version and meson.add_devenv block from meson.build.
+    cd ${name}
+    mv meson.build meson.build.orig
+    awk '
+        BEGIN { skip_rest = 0 }
+        /meson_version/ { next }
+        /meson.add_devenv/ { skip_rest = 1 }
+        {
+            if (skip_rest == 1) next
+            print
+        }
+    ' meson.build.orig >meson.build
+    cd ..
+
     tar czf ${name}.tar.gz ${name}
 else
     tar xzf ${name}.tar.gz
