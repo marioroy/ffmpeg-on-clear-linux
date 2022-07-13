@@ -1,16 +1,15 @@
 #!/bin/bash
 
 name="dav1d"
-branch="1.0.0"
-echo "building ${name} branch ${branch}"
+echo "building ${name}"
 
 mkdir -p builddir && cd builddir
 rm -fr ${name}
 
 if [[ ! -f ${name}.tar.gz ]]; then
     url="https://code.videolan.org/videolan/${name}.git"
-    echo "git clone --depth 1 --branch ${branch} ${url}"
-    git clone --depth 1 --branch ${branch} ${url}
+    echo "git clone --depth 1 ${url}"
+    git clone --depth 1 ${url}
     tar czf ${name}.tar.gz ${name}
 else
     tar xzf ${name}.tar.gz
