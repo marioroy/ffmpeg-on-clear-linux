@@ -4,7 +4,7 @@
 [[ ! -f /usr/local/cuda/include/cuda.h ]] && exit 0
 
 name="ffmpeg"
-branch="release/5.0"
+branch="release/5.1"
 echo "building ${name} branch ${branch}"
 
 mkdir -p builddir && cd builddir
