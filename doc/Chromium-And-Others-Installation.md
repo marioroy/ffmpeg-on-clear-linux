@@ -96,7 +96,7 @@ $ sudo rpm -Uvh --nodeps \
 
 # install-or-update package from pkgs.org, change version accordingly
 $ sudo rpm -Uvh --nodeps \
-    ~/Downloads/google-chrome-stable-101.0.4951.64-1.x86_64.rpm 2>/dev/null
+    ~/Downloads/google-chrome-stable-103.0.5060.114-1.x86_64.rpm 2>/dev/null
 ```
 
 **Edit ~/bin/run-chrome-stable**
@@ -138,7 +138,7 @@ $ sudo mkdir -p /etc/default && sudo touch /etc/default/vivaldi
 
 # install-or-update package, change version accordingly
 $ sudo rpm -Uvh --nodeps \
-    ~/Downloads/vivaldi-stable-5.2.2623.46-1.rpm 2>/dev/null
+    ~/Downloads/vivaldi-stable-5.3.2679.68-1.x86_64.rpm 2>/dev/null
 ```
 
 **Edit ~/bin/run-vivaldi-stable**
@@ -180,7 +180,7 @@ $ sudo mkdir -p /etc/default && sudo touch /etc/default/brave-browser
 
 # install-or-update package, change version accordingly
 $ sudo rpm -Uvh --nodeps \
-    ~/Downloads/brave-browser-1.38.115-1.x86_64.rpm 2>/dev/null
+    ~/Downloads/brave-browser-1.41.96-1.x86_64.rpm 2>/dev/null
 ```
 
 **Edit ~/bin/run-brave-stable**
