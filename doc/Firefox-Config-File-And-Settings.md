@@ -72,10 +72,8 @@ media.ffmpeg.vaapi.enabled                     true
 media.ffvpx.enabled                            false
 
 Verify enabled, necessary for the NVIDIA-NVDEC enabled driver to work.
-media.rdd-process.enabled                      true
-
 media.rdd-ffmpeg.enabled                       true
-media.rdd-vpx.enabled                          false
+media.rdd-process.enabled                      true
 
 Optionally enable for NVIDIA 3000+ series graphics using proprietary
 driver v510+ and NVDEC-enabled VA-API driver v0.0.5+. Disable if AV1
