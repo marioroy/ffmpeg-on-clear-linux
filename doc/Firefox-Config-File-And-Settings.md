@@ -13,9 +13,13 @@ $ cat ~/.config/firefox.conf
 
 export FONTCONFIG_PATH=/usr/share/defaults/fonts
 export LD_LIBRARY_PATH=/usr/local/lib
-
 export LIBVA_DRIVERS_PATH=/usr/lib64/dri:/usr/local/lib/dri
-export LIBVA_DRIVER_NAME=auto
+
+# Optionally uncomment one of the following matching your configuration.
+# export LIBVA_DRIVER_NAME=iHD
+# export LIBVA_DRIVER_NAME=i965
+# export LIBVA_DRIVER_NAME=r600
+# export LIBVA_DRIVER_NAME=radeonsi
 
 if [[ -d /opt/nvidia ]]
 then
