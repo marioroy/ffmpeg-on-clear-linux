@@ -44,7 +44,12 @@ fi
 # Launch browser.
 export FONTCONFIG_PATH=/usr/share/defaults/fonts
 export LIBVA_DRIVERS_PATH=/usr/lib64/dri
-export LIBVA_DRIVER_NAME=auto
+
+# Optionally uncomment one of the following matching your configuration.
+# export LIBVA_DRIVER_NAME=iHD
+# export LIBVA_DRIVER_NAME=i965
+# export LIBVA_DRIVER_NAME=r600
+# export LIBVA_DRIVER_NAME=radeonsi
 
 if [[ -d /opt/nvidia && -f $LIBVA_DRIVERS_PATH/vdpau_drv_video.so ]]
 then
