@@ -16,10 +16,9 @@ fi
 tar xzf ${name}-${version}.tar.gz
 
 if [[ -d ${name} ]]; then
-    cores=`grep -c '^cpu[0-9]' /proc/stat`
     cd ${name}/build/generic
     ./configure --prefix=/usr/local --disable-static && \
-    make -j ${cores} && \
+    make -j && \
     rm -f /usr/local/lib/libxvidcore.so* && \
     make install && \
     chmod 755 /usr/local/lib/libxvidcore.so && \

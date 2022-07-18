@@ -4,9 +4,9 @@
 [[ ! -f /opt/nvidia/bin/nvidia-settings ]] && exit 0
 
 # Exit silently if the the graphics driver does not meet requirement.
-version=`/opt/nvidia/bin/nvidia-settings --version | grep version`
+version=$(/opt/nvidia/bin/nvidia-settings --version | grep version)
 version=${version##* } # extract the version string from the line
-version=`echo $version | cut -d. -f1-2` # want major and minor, not revision
+version=$(echo $version | cut -d. -f1-2) # want major and minor, not revision
 
 if [[ $(bc -l <<< "${version} < 470.57") -eq 1 ]]; then
     echo "$0: NVIDIA graphics driver is older than 470.57, skipping..."

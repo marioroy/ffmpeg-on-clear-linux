@@ -5,9 +5,9 @@
 
 echo "building nv-codec-headers"
 
-version=`/opt/nvidia/bin/nvidia-settings --version | grep version`
+version=$(/opt/nvidia/bin/nvidia-settings --version | grep version)
 version=${version##* } # extract the version string from the line
-version=`echo $version | cut -d. -f1-2` # want major and minor, not revision
+version=$(echo $version | cut -d. -f1-2) # want major and minor, not revision
 
 if [[ $(bc -l <<< "${version} < 470.57") -eq 1 ]]; then
     echo "Warning: NVIDIA graphics driver is older than 470.57, skipping build..."

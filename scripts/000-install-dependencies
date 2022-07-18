@@ -37,6 +37,13 @@ if [[ -f /opt/nvidia/bin/nvidia-settings ]]; then
     fi
 fi
 
+# Add devpkg-lcms2 bundle. FFmpeg 5.1 requires version 2.13+.
+if [[ ! ${installed_bundles} =~ " - devpkg-lcms2 " ]]; then
+    [[ $osrel -ge 36600 ]] && add_list="${add_list} devpkg-lcms2"
+else
+    count=$(( ${count} + 1 ))
+fi
+
 # Add devpkg-wavpack bundle.
 if [[ ! ${installed_bundles} =~ " - devpkg-wavpack " ]]; then
     [[ $osrel -ge 35950 ]] && add_list="${add_list} devpkg-wavpack"

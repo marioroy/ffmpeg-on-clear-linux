@@ -16,7 +16,6 @@ fi
 tar xzf ${name}_${version}.tar.gz
 
 if [[ -d ${name}_${version} ]]; then
-    cores=`grep -c '^cpu[0-9]' /proc/stat`
     cd ${name}_${version}
 
     # Fix for ENABLE_PIC.

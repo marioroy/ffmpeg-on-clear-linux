@@ -16,11 +16,10 @@ else
 fi
 
 if [[ -d ${name} ]]; then
-    cores=`grep -c '^cpu[0-9]' /proc/stat`
     cd ${name}
     autoreconf -fiv && \
     ./configure --prefix=/usr/local --enable-shared && \
-    make -j ${cores} && make install && \
+    make -j && make install && \
     rm -f /usr/local/lib/libfdk-aac.la /usr/local/lib/libfdk-aac.a
 fi
 

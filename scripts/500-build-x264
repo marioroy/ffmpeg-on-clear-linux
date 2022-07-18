@@ -16,7 +16,6 @@ else
 fi
 
 if [[ -d ${name} ]]; then
-    cores=`grep -c '^cpu[0-9]' /proc/stat`
     cp -a ${name} ${name}-generic10
     mv ${name} ${name}-generic
 
@@ -30,7 +29,7 @@ if [[ -d ${name} ]]; then
         --extra-ldflags="-L/usr/local/lib" --enable-lto --enable-shared \
         --enable-pic --enable-strip --disable-lavf --disable-avs --disable-swscale \
         --disable-ffms --disable-opencl --disable-cli --bit-depth=10 && \
-    make -j ${cores} || exit $?
+    make -j || exit $?
     make install || exit $?
 
     echo "Building the ${name} 8-bit shared library and cli tools..."
@@ -40,6 +39,6 @@ if [[ -d ${name} ]]; then
         --extra-ldflags="-L/usr/local/lib" --enable-lto --enable-shared \
         --enable-pic --enable-strip --disable-lavf --disable-avs --disable-swscale \
         --disable-ffms --disable-opencl && \
-    make -j ${cores} && make install
+    make -j && make install
 fi
 

@@ -45,8 +45,14 @@ if [[ -d ${name} ]]; then
     export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
     export LD_LIBRARY_PATH=/usr/local/lib
 
-    cores=`grep -c '^cpu[0-9]' /proc/stat`
     cd ${name}
+
+    osrel=$(grep VERSION_ID /etc/os-release | cut -f2 -d=)
+    if [[ $osrel -ge 36600 && -f /usr/include/lcms2.h ]]; then
+        lcms2="--enable-lcms2"
+    else
+        lcms2=""
+    fi
 
     if [[ -f /opt/nvidia/bin/nvidia-settings ]]; then
         vdpau="--enable-vdpau"
@@ -71,20 +77,21 @@ if [[ -d ${name} ]]; then
         --prefix=/usr/local \
         --extra-cflags="-I/usr/local/include -I/usr/local/cuda/include" \
         --extra-ldflags="-L/usr/local/lib -L/opt/nvidia/lib64 -L/opt/nvidia/lib -L/usr/local/cuda/lib64 ${ldflags}" \
-        --extra-libs="-lpthread -lm" --ar=gcc-ar \
+        --extra-libs="-lpthread -lm" \
+        --ar=gcc-ar --disable-amd3dnow --disable-debug --disable-podpages \
+        --disable-static --enable-shared --enable-pthreads \
         --enable-hardcoded-tables --arch=x86_64 --enable-x86asm \
-        --disable-podpages --disable-static --enable-shared --enable-pthreads \
         --enable-avcodec --enable-bzlib --enable-gcrypt --enable-gmp \
-        --enable-gnutls --enable-fontconfig --enable-libaom --enable-libass \
-        --enable-libdav1d --enable-libdrm --enable-libfdk-aac \
-        --enable-libfreetype --enable-libmfx --enable-libmp3lame \
+        --enable-gnutls --enable-fontconfig $lcms2 --enable-libaom \
+        --enable-libass --enable-libdav1d --enable-libdrm --enable-libfdk-aac \
+        --enable-libfreetype --enable-libfribidi --enable-libmfx --enable-libmp3lame \
         --enable-libopus --enable-libpulse --enable-librsvg --enable-libspeex \
-        --enable-libsvtav1 --enable-libtheora --enable-libv4l2 \
-        --enable-libvidstab --enable-libvmaf --enable-libvorbis \
-        --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 \
-        --enable-libxcb --enable-libxcb-shape --enable-libxcb-shm \
-        --enable-libxcb-xfixes --enable-libxml2 --enable-libxvid \
-        --enable-opengl --enable-postproc --enable-sdl2 --enable-vaapi $vdpau $vulkan \
+        --enable-libsvtav1 --enable-libtheora --enable-libv4l2 --enable-libvidstab \
+        --enable-libvmaf --enable-libvorbis --enable-libvpx --enable-libwebp \
+        --enable-libx264 --enable-libx265 --enable-libxcb --enable-libxcb-shape \
+        --enable-libxcb-shm --enable-libxcb-xfixes --enable-libxml2 --enable-libxvid \
+        --enable-opengl --enable-pixelutils --enable-postproc --enable-rdft \
+        --enable-sdl2 --enable-vaapi $vdpau $vulkan \
         --enable-zlib --enable-ffplay --enable-gpl --enable-nonfree \
         --enable-version3 --enable-lto --enable-cuda-nvcc --nvcc=/usr/local/cuda/bin/nvcc \
         --nvccflags="$_CC -gencode arch=${cudaarch},code=${cudacode} -O2 -m64 -ptx" \
@@ -95,6 +102,6 @@ if [[ -d ${name} ]]; then
         sed -i 's/^#define HAVE_VAAPI_DRM 1/#define HAVE_VAAPI_DRM 0/' config.h
     fi
 
-    make -j ${cores} && make install
+    make -j && make install
 fi
 

@@ -15,10 +15,9 @@ fi
 tar xzf ${name}.tar.gz
 
 if [[ -d ${name} ]]; then
-    cores=`grep -c '^cpu[0-9]' /proc/stat`
     cd ${name}
     ./configure --prefix=/usr/local --enable-shared --enable-nasm && \
-    make -j ${cores} && make install && \
+    make -j && make install && \
     rm -f /usr/local/lib/libmp3lame.la /usr/local/lib/libmp3lame.a
 fi
 

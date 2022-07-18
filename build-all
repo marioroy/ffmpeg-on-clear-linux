@@ -6,9 +6,14 @@ if [[ ! -d scripts ]]; then
     exit 1
 fi
 
+if [[ "$USER" != "root" ]]; then
+    echo "Please run the script as super user."
+    exit 1
+fi
+
 cd scripts
 
-for script in `ls [0-9][0-9][0-9]-*`; do
+for script in [0-9][0-9][0-9]-* ; do
     echo "Launching ${script}..."
     ./${script} || exit $?
     echo ""
