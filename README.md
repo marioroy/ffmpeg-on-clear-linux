@@ -155,7 +155,11 @@ layout.css.devPixelsPerPx          1.12
 
 ### <a id="verify-acceleration">How can I make sure hardware acceleration is working?
 
-In Firefox, check the `about:support` page. In Brave, Chromium, Google Chrome, and Vivaldi, check the `chrome://gpu` page. Another way is running a utility suited for your hardware while watching a video.
+In Firefox, check the `about:support` page. In Brave, Chromium, Google Chrome, and Vivaldi, check the `chrome://gpu` page. Another way is running a utility suited for your hardware while watching a video. The `igt-gpu-tools` bundle provides `intel_gpu_top` and `intel_gpu_frequency`.
+
+```bash
+sudo swupd bundle-add igt-gpu-tools
+```
 
 1. `watch -n 1 /opt/nvidia/bin/nvidia-smi` to check if "GPU-Util" percentage goes up
 2. `sudo intel_gpu_top` to check if percentage under the "Video" section goes up

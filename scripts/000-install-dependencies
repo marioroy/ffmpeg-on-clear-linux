@@ -19,7 +19,7 @@ for bundle_name in \
     devpkg-mesa devpkg-numactl devpkg-opus devpkg-pulseaudio      \
     devpkg-SDL2 devpkg-SDL2_gfx devpkg-SDL2_image devpkg-SDL2_net \
     devpkg-SDL2_ttf devpkg-speex devpkg-v4l-utils devpkg-zlib     \
-    curl unzip                                                    \
+    curl unzip package-utils                                      \
 ;do
     if [[ ! ${installed_bundles} =~ " - ${bundle_name} " ]]; then
         add_list="${add_list} ${bundle_name}"
