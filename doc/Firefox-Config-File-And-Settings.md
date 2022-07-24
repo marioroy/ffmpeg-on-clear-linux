@@ -54,10 +54,6 @@ export MOZ_WEBRENDER=1
 Below are the minimum settings applied via `about:config` to enable hardware acceleration. The `media.rdd-ffmpeg.enable` flag must be enabled for h264ify or enhanced-h264ify to work along with VP9. Basically, this allows you to choose to play videos via the h264ify extension or VP9 media by disabling h264ify and enjoy beyond 1080P playback.
 
 ```text
-gfx.canvas.azure.accelerated                   true
-gfx.webrender.all                              true
-gfx.webrender.enabled                          true
-
 Enable software render if you want to render on the CPU instead of GPU.
 Preferably, leave this setting false since webrender on the GPU is needed
 to decode videos in hardware.
@@ -70,6 +66,9 @@ gfx.xrender.enabled                            false
 Ensure false so to be on a supported code path for using WebRender.
 layers.acceleration.force-enabled              false
 
+Disable only if your graphics hardware lacks support for AV1.
+media.av1.enabled                              false
+
 media.ffmpeg.dmabuf-textures.enabled           true
 media.ffmpeg.vaapi-drm-display.enabled         true
 media.ffmpeg.vaapi.enabled                     true
@@ -78,14 +77,6 @@ media.ffvpx.enabled                            false
 Verify enabled, necessary for the NVIDIA-NVDEC enabled driver to work.
 media.rdd-ffmpeg.enabled                       true
 media.rdd-process.enabled                      true
-
-Optionally enable for NVIDIA 3000+ series graphics using proprietary
-driver v510+ and NVDEC-enabled VA-API driver v0.0.5+. Disable if AV1
-content does not appear to be hardware-accelerated.
-media.av1.enabled                              false
-
-Enable for Intel graphics supporting AV1 decoding.
-media.av1.enabled                              true
 
 Enable FFMPEG VA-API decoding support for WebRTC on Linux.
 media.navigator.mediadatadecoder_vpx_enabled   true
