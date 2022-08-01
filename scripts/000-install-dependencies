@@ -51,7 +51,7 @@ else
     count=$(( ${count} + 1 ))
 fi
 
-# Buidling FFmpeg with flags "--enable-vulkan --enable-libglslang"
+# Building FFmpeg with flags "--enable-vulkan --enable-libglslang"
 # requires glslang and vulkan header files provided by developer-gpu.
 # Add bundle optionally due to missing glslang headers in CL <= 35920.
 if [[ ! ${installed_bundles} =~ " - developer-gpu " ]]; then
@@ -64,6 +64,7 @@ if [[ -n ${add_list} ]]; then
     add_list=${add_list## } # remove leading whitespace
     echo "swupd bundle-add ${add_list}"
     swupd bundle-add ${add_list}
+    ldconfig
 fi
 
 # Add gcc10 if the NVIDIA CUDA Toolkit is present.
